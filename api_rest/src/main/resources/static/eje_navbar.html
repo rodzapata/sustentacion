@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Dinámico</title>
+    <style>
+        .profile {
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .info {
+            margin-right: 20px;
+        }
+
+        .profile-photo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        small {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sección del perfil -->
+    <div class="profile">
+        <div class="info">
+            <p>Hey, <b id="userName">Usuario</b></p>
+            <small class="text-muted" id="userRole">Rol</small>
+        </div>
+        <div class="profile-photo">
+            <img id="userImage" src="./img/default-profile.jpeg" alt="" srcset="">
+        </div>
+    </div>
+
+    <script>
+        // Simulación de datos de usuarios guardados en el navegador (localStorage)
+        const usuarioAdmin = {
+            nombre: "Rodney",
+            rol: "Admin",
+            imagen: "./img/profile-admin.jpeg"
+        };
+
+        const usuarioAsistente = {
+            nombre: "Asistente",
+            rol: "Assistant",
+            imagen: "./img/profile-assistant.jpeg"
+        };
+
+        // Guardar datos de usuario en localStorage (esto simula el login)
+        localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioAdmin));  // Cambia a 'usuarioAsistente' para probar
+
+        // Función para actualizar el perfil dinámicamente
+        function actualizarPerfil() {
+            // Obtener los datos del usuario guardados en localStorage
+            const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+
+            if (usuarioLogueado) {
+                // Actualizar el nombre
+                document.getElementById('userName').textContent = usuarioLogueado.nombre;
+                // Actualizar el rol
+                document.getElementById('userRole').textContent = usuarioLogueado.rol;
+                // Actualizar la imagen de perfil
+                document.getElementById('userImage').src = usuarioLogueado.imagen;
+            }
+        }
+
+        // Ejecutar la función para actualizar el perfil cuando se cargue la página
+        actualizarPerfil();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardar Usuario</title>
+    <style>
+        /* Estilos para la ventana emergente */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            /* Fondo semi-transparente */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-contenido {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .modal-contenido h2 {
+            color: green;
+            margin-bottom: 20px;
+        }
+
+        .boton-cerrar {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .boton-cerrar:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="guardarUsuario()">Guardar Usuario</button>
+
+    <!-- Ventana modal personalizada -->
+    <div id="miModal" class="modal">
+        <div class="modal-contenido">
+            <h2>Usuario guardado correctamente</h2>
+            <button class="boton-cerrar" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function guardarUsuario() {
+            // Lógica para guardar el usuario
+            // Mostrar ventana modal
+            document.getElementById("miModal").style.display = "flex";
+        }
+
+        function cerrarModal() {
+            document.getElementById("miModal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
