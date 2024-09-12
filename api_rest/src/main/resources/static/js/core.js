@@ -70,6 +70,35 @@ function loadZoneTemplate(zone) {
     });
 }
 
-function cbErrorBase(error) {
-    alert("El llamado al servidor fallo " + error);
-}
+
+// Guardar datos de usuario en localStorage (esto simula el login)
+//localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioAdmin));  // Cambia a 'usuarioAsistente' para probar
+
+// Función para actualizar el perfil dinámicamente
+// function actualizarPerfil(user) {
+//     // Obtener los datos del usuario guardados en localStorage
+//     //const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+//     //const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+
+//     if (usuarioLogueado) {
+//         // // Actualizar el nombre
+//         // document.getElementById('userName').textContent = usuarioLogueado.email;
+//         // document.getElementById('userName').textContent = 'rzapata@serviparamo.com';
+//         // // Actualizar el rol
+//         // document.getElementById('userRole').textContent = usuarioLogueado.rolName;
+//         // // Actualizar la imagen de perfil
+//         // document.getElementById('userImage').src = usuarioLogueado.avatar;
+
+//         document.getElementById('userName').textContent = user.email;
+//         // Actualizar el rol
+//         document.getElementById('userRole').textContent = user.rolName;
+//         // Actualizar la imagen de perfil
+//         document.getElementById('userImage').src = user.avatar;
+
+
+//     }
+//     else{
+//         alert('usuarioLogueado no guardado');
+//     }
+// }
+

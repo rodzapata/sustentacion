@@ -27,6 +27,8 @@ public class UserService {
         }
         return true;
     }
+    //Codigo anterior
+    /*
     public boolean validarCredenciales(String username, String password) {
         UserEntity entity = this.repository.findByEmail(username);
         if(Objects.isNull(entity)) {
@@ -38,6 +40,43 @@ public class UserService {
         }
         return true;
     }
+    */
+
+    public UserDto validarCredenciales(String username, String password) {
+        if(!validateByEmail(username)) {
+            throw new ResourceNotFoundException("Correo de usuario no existe");
+        }
+
+        UserEntity entity =  this.repository.findByEmail(username);
+        if (!password.equals(entity.getPassword())) {
+            throw new ResourceNotFoundException("pasword errado");
+        }
+
+        UserDto dto = UserDto.builder()
+                .id(entity.getId())
+                .fullName(entity.getFullName())
+                .bornDate(entity.getBornDate())
+                .state(entity.getState())
+                .email(entity.getEmail())
+                .phone(entity.getPhone())
+                .avatar(entity.getAvatar())
+                .rolId(entity.getRol().getId())
+                .rolName(entity.getRol().getTitle())
+                .build();
+/*
+        if(Objects.isNull(entity)) {
+            return null;
+        }
+        if (!password.equals(entity.getPassword())) {
+            return null;
+        }
+     */
+
+        return dto;
+    }
+
+
+
 
     public UserDto create(UserDto dto) {
         //No se puede registrar un usuario con un correo ya registrado

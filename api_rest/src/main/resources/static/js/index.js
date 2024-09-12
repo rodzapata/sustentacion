@@ -13,6 +13,14 @@ $(function () {
     // loadRoles();
     // loadUsuarios();
     // loadCustomers();
+
+    // Convertir los datos de JSON a objeto
+    const user = JSON.parse(usuarioLogueado);
+
+    //const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+
+    //actualizarPerfil(user);
+
     loadFormEvent();
 
 });

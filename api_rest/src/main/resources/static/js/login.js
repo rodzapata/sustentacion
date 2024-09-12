@@ -1,6 +1,6 @@
-$(document).ready(function() {
-   // on ready
-});
+// $(document).ready(function() {
+//    // on ready
+// });
 
 
 async function iniciarSesion() {
@@ -17,7 +17,8 @@ async function iniciarSesion() {
         password: password
     };
 
-    // Configura la solicitud POST
+    const messageElement = document.getElementById('loginMessage');
+
     fetch('http://localhost:8080/user/validar-credenciales', {
         method: 'POST',
         headers: {
@@ -25,31 +26,76 @@ async function iniciarSesion() {
         },
         body: JSON.stringify(loginData)
     })
-    .then(response => response.json())
-    .then(data => {
-        // Maneja la respuesta del servidor
-        if (data) {
-            document.getElementById('loginMessage').textContent = 'Inicio de sesión exitoso!';
-            // Guardar datos de usuario en localStorage (esto simula el login)
-            localStorage.setItem('usuarioLogueado', JSON.stringify(data));  // Cambia a 'usuarioAsistente' para probar
-            console.log(localStorage.getItem("usuarioLogueado"));
-
-            // Obtener los datos del usuario guardados en localStorage
-            const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
-            console.log(usuarioLogueado);
-
-            // Redireccionar a otra página o realizar otras acciones
-            //window.location.href = 'menu.html'
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else if (response.status === 404) {
+            throw new Error('Credenciales incorrectas. Inténtalo de nuevo.');
         } else {
-            //alert( 'Credenciales incorrectas. Inténtalo de nuevo.');
-            document.getElementById('loginMessage').textContent = 'Credenciales incorrectas. Inténtalo de nuevo.';
+            throw new Error('Error en la solicitud: ' + response.status);
         }
     })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('loginMessage').textContent = 'Hubo un error al intentar iniciar sesión.';
-        //alert('Hubo un error al intentar iniciar sesión.');
-    });
-});
+    .then(data => {
+        // Mostrar mensaje de éxito
+        messageElement.textContent = 'Login exitoso';
+        messageElement.style.color = 'green';
 
+        // Guardar datos de usuario en localStorage (esto simula el login)
+        //localStorage.setItem('usuarioLogueado', JSON.stringify(data));  // Cambia a 'usuarioAsistente' para probar
+
+        try {
+            localStorage.setItem('usuarioLogueado', JSON.stringify(data));
+            console.log('Datos guardados correctamente en localStorage.');
+        } catch (error) {
+            console.error('Error al guardar los datos en localStorage:', error);
+            alert('Ocurrió un error al guardar los datos. Por favor, intenta nuevamente.');
+        }
+        
+
+        // Obtener los datos del usuario guardados en localStorage
+        const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+
+        //actualizarPerfil(usuarioLogueado);
+        
+        //console.log(usuarioLogueado);
+
+        window.location.href = 'menu.html'
+    })
+    .catch(error => {
+        // Mostrar mensaje de error
+        messageElement.textContent = error.message;
+        messageElement.style.color = 'red';
+    });
+    
+
+    });
+
+    function actualizarPerfil(user) {
+        // Obtener los datos del usuario guardados en localStorage
+        //const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
+        //const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+    
+        if (usuarioLogueado) {
+            // // Actualizar el nombre
+            // document.getElementById('userName').textContent = usuarioLogueado.email;
+            // document.getElementById('userName').textContent = 'rzapata@serviparamo.com';
+            // // Actualizar el rol
+            // document.getElementById('userRole').textContent = usuarioLogueado.rolName;
+            // // Actualizar la imagen de perfil
+            // document.getElementById('userImage').src = usuarioLogueado.avatar;
+    
+            document.getElementById('userName').textContent = user.email;
+            // Actualizar el rol
+            document.getElementById('userRole').textContent = user.rolName;
+            // Actualizar la imagen de perfil
+            document.getElementById('userImage').src = user.avatar;
+    
+    
+        }
+        else{
+            alert('usuarioLogueado no guardado');
+        }
+    }
+    
 }
+

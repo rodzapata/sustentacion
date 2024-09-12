@@ -20,10 +20,25 @@ public class UserController {
 
 
     @PostMapping("/validar-credenciales")
+    public ServerResponseDataDto validarCredenciales(@RequestBody UserDto userDto) {
+
+        UserDto dto = this.service.validarCredenciales(userDto.getEmail(), userDto.getPassword());
+
+
+        return ServerResponseDataDto.builder()
+                .data(dto)
+                .status(HttpStatus.OK.value())
+                .message("Registro encontrado")
+                .build();
+
+
+    }
+/*
+    @PostMapping("/validar-credenciales")
     public boolean validarCredenciales(@RequestBody @Valid LoginDto dto) {
         return service.validarCredenciales(dto.getEmail(),dto.getPassword());
     }
-
+*/
     @PostMapping()
     public ServerResponseDataDto create(@RequestBody @Valid UserDto dto) {
 
