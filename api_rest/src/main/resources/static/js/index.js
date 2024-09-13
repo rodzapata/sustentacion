@@ -20,6 +20,7 @@ $(function () {
     //const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
 
     //actualizarPerfil(user);
+    actualizarPerfil();
 
     loadFormEvent();
 

@@ -108,6 +108,8 @@ function loadContent(page,elemenId) {
 document.addEventListener("DOMContentLoaded", function() {
     // alert("ser carga una sola vez");
     loadContent('dashboard.html','main-content');
+    actualizarPerfil();
+
 });
 
 

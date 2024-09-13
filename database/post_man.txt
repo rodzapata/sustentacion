@@ -1,0 +1,118 @@
+-------- USUARIOS --------------------
+http://localhost:8080/user
+
+{
+    "fullName":"rodney zapata palacio",
+    "bornDate":"1975-02-26",
+    "state":"1",
+    "email":"rondeyzapatapalacio@gmail.com",
+    "phone":"3103724590",
+    "avatar":"foto1.jpg",
+    "password":"clave",
+    "rolId":"1"
+}
+
+{
+    "fullName":"juan miguel zapata cantillo",
+    "bornDate":"2007-07-19",
+    "state":"1",
+    "email":"juanmiguelzapatacantillo@gmail.com",
+    "phone":"3103724590",
+    "avatar":"foto2.jpg",
+    "password":"12345",
+    "rolId":"2"
+}
+
+{
+    "fullName":"Cecilia Cantillo Colon",
+    "bornDate":"1987-05-02",
+    "state":"1",
+    "email":"ccantillo2018@gmail.com",
+    "phone":"3024694610",
+    "avatar":"foto3.jpg",
+    "password":"12345",
+    "rolId":"2"
+}
+
+--------- CLIENTES --------------
+http://localhost:8080/customer
+
+{
+    "fullName":"Evelin Palacio",
+    "bornDate":"1985-01-02",
+    "state":"1",
+    "email":"evelin2005@gmail.com",
+    "phone":"3126810844",
+    "address":"Kra 5C 10-20",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"samuel zapata",
+    "bornDate":"2010-01-02",
+    "state":"1",
+    "email":"samauel@gmail.com",
+    "phone":"3126810844",
+    "address":"Kra 5C 10-20",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"Tecnoglas",
+    "bornDate":"1985-01-02",
+    "state":"1",
+    "email":"samuel@tecno.com",
+    "phone":"3126810844",
+    "address":"via 40 calle 74",
+    "city":"Barranquilla"
+}
+
+{
+    "fullName":"GRUAS TELESCOPICA DE COLOMBIA",                                                                                                                                            
+    "bornDate":"2024-01-02",
+    "state":"1",
+    "email":"gruas@tecno.com",
+    "phone":"3126810844",
+    "address":"via 40 calle 30",
+    "city":"Barranquilla"
+}
+
+--------------- REFRIGERNATES ---------
+
+http://localhost:8080/refrigerant
+
+{
+    "refrigerantName": "GAS REFRIGERANTE R-22"
+}
+
+--------------- MARCAS ------------
+http://localhost:8080/brand
+{
+    "brandName": "LG"
+}
+
+--------------- PRODUCTOS ----------
+http://localhost:8080/equipment
+{
+    "serialNumber": "1010",
+    "installationDate": "2016-01-01",
+    "lastMaintenanceDate": "2017-01-01",
+    "customerId": 1
+}
+
+{
+    "serialNumber": "1020",
+    "installationDate": "2018-01-01",
+    "lastMaintenanceDate": "2019-01-01",
+    "customerId": 3
+}
+
+------------- TECNICOS ---------
+http://localhost:8080/technician
+
+{
+     "fullName": "2000-01-01",
+     "email": "tecnico3 Andres",
+     "phone": "3100000000",
+     "hireDate": "1980-01-01"
+}

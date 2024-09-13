@@ -66,6 +66,24 @@ button[type="submit"]:hover {
 
 }
 
+button[type="button"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="button"]:hover {
+    background-color: #45a049;
+    background-color: #2980b9;
+
+}
+
 a.small {
     display: block;
     margin-top: 10px;

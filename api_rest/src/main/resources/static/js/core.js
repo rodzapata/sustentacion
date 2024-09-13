@@ -71,34 +71,22 @@ function loadZoneTemplate(zone) {
 }
 
 
-// Guardar datos de usuario en localStorage (esto simula el login)
-//localStorage.setItem('usuarioLogueado', JSON.stringify(usuarioAdmin));  // Cambia a 'usuarioAsistente' para probar
+function actualizarPerfil() {
+    const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+    if (usuarioLogueado) {
+        // Convertir el string de localStorage a objeto
+        const usuarioData = JSON.parse(usuarioLogueado);
+    
+        // Extraer los valores de email, rolName y avatar
+        const email = usuarioData.data.email;
+        const rolName = usuarioData.data.rolName;
+        const avatar = usuarioData.data.avatar;
 
-// Función para actualizar el perfil dinámicamente
-// function actualizarPerfil(user) {
-//     // Obtener los datos del usuario guardados en localStorage
-//     //const usuarioLogueado = JSON.parse(localStorage.getItem('usuarioLogueado'));
-//     //const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+        document.getElementById('userName').textContent = email;
+        // Actualizar el rol
+        document.getElementById('userRole').textContent = rolName;
+        // Actualizar la imagen de perfil
+        document.getElementById('userImage').src = avatar;
 
-//     if (usuarioLogueado) {
-//         // // Actualizar el nombre
-//         // document.getElementById('userName').textContent = usuarioLogueado.email;
-//         // document.getElementById('userName').textContent = 'rzapata@serviparamo.com';
-//         // // Actualizar el rol
-//         // document.getElementById('userRole').textContent = usuarioLogueado.rolName;
-//         // // Actualizar la imagen de perfil
-//         // document.getElementById('userImage').src = usuarioLogueado.avatar;
-
-//         document.getElementById('userName').textContent = user.email;
-//         // Actualizar el rol
-//         document.getElementById('userRole').textContent = user.rolName;
-//         // Actualizar la imagen de perfil
-//         document.getElementById('userImage').src = user.avatar;
-
-
-//     }
-//     else{
-//         alert('usuarioLogueado no guardado');
-//     }
-// }
-
+    }
+}

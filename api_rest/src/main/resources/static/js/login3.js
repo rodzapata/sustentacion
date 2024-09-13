@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnGuardar = document.getElementById('btnGuardar');
 
     // Agregar un evento click al botón
-    btnIniciar.addEventListener('click', function (e) {
-        e.preventDefault();
+    btnGuardar.addEventListener('click', function () {
         // Obtiene los valores de los campos de email y contraseña
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
@@ -68,25 +67,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    // btnTraer.addEventListener('click', function () {
-    //     const usuarioLogueado = localStorage.getItem('usuarioLogueado');
-    //     if (usuarioLogueado) {
-    //         // Convertir el string de localStorage a objeto
-    //         const usuarioData = JSON.parse(usuarioLogueado);
+    btnTraer.addEventListener('click', function () {
+        const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+        if (usuarioLogueado) {
+            // Convertir el string de localStorage a objeto
+            const usuarioData = JSON.parse(usuarioLogueado);
         
-    //         // Extraer los valores de email, rolName y avatar
-    //         const email = usuarioData.data.email;
-    //         const rolName = usuarioData.data.rolName;
-    //         const avatar = usuarioData.data.avatar;
+            // Extraer los valores de email, rolName y avatar
+            const email = usuarioData.data.email;
+            const rolName = usuarioData.data.rolName;
+            const avatar = usuarioData.data.avatar;
 
-    //         document.getElementById('userName').textContent = email;
-    //         // Actualizar el rol
-    //         document.getElementById('userRole').textContent = rolName;
-    //         // Actualizar la imagen de perfil
-    //         document.getElementById('userImage').src = avatar;
+            document.getElementById('userName').textContent = email;
+            // Actualizar el rol
+            document.getElementById('userRole').textContent = rolName;
+            // Actualizar la imagen de perfil
+            document.getElementById('userImage').src = avatar;
     
-    //     }
+        }
 
-    // });
+    });
 });
+
 
