@@ -102,12 +102,38 @@ function loadContent(page,elemenId) {
         
         })
         .catch(error => console.error('Error al cargar la página:', error));
+}
 
+function loadContentChange(page,elemenId) {
+    fetch(page)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById(elemenId).outerHTML = data;
+            // loadRoles();
+            // loadUsuarios();
+            // loadFormEvent();
+        
+        })
+        .catch(error => console.error('Error al cargar la página:', error));
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    // alert("ser carga una sola vez");
+    // loadContent('aside_admin.html','aside');
     loadContent('dashboard.html','main-content');
+
+    const usuarioLogueado = localStorage.getItem('usuarioLogueado');
+    if (usuarioLogueado) {
+        // Convertir el string de localStorage a objeto
+        const usuarioData = JSON.parse(usuarioLogueado);
+    
+        // Extraer los valores de email, rolName y avatar
+        const rolName = usuarioData.data.rolName;
+
+        if  (rolName=="asistente"){
+            loadContentChange('aside_asist.html','aside');
+        }
+    }
+  
     actualizarPerfil();
 
 });

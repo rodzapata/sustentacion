@@ -72,6 +72,7 @@ function loadZoneTemplate(zone) {
 
 
 function actualizarPerfil() {
+    // alert('actualizar perfil');
     const usuarioLogueado = localStorage.getItem('usuarioLogueado');
     if (usuarioLogueado) {
         // Convertir el string de localStorage a objeto
