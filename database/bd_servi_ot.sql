@@ -402,4 +402,5 @@ update user_login set rol_id=2 where email='juanmiguelzapatacantillo@gmail.com'
 
 update user_login set password='1234'
 
-
+update equipment set last_maintenance_date=installation_date
+select * from equipment

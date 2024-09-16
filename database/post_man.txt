@@ -1,3 +1,13 @@
+------ DASBOARD ---------
+http://localhost:8080/entity-counts
+{
+    "customerCount": 3,
+    "activityCount": 23,
+    "equipmentCount": 2
+}
+
+
+
 -------- USUARIOS --------------------
 http://localhost:8080/user
 
@@ -93,19 +103,18 @@ http://localhost:8080/brand
 
 --------------- PRODUCTOS ----------
 http://localhost:8080/equipment
-{
-    "serialNumber": "1010",
-    "installationDate": "2016-01-01",
-    "lastMaintenanceDate": "2017-01-01",
-    "customerId": 1
-}
 
 {
-    "serialNumber": "1020",
-    "installationDate": "2018-01-01",
-    "lastMaintenanceDate": "2019-01-01",
-    "customerId": 3
+    "serialNumber": "2024",
+    "installationDate": "2024-01-12",
+    "lastMaintenanceDate": "2024-01-12",
+    "customerId": 2,
+    "equipmentTypeId": 1,
+    "brandId": 1,
+    "refrigerantId": 1
 }
+
+
 
 ------------- TECNICOS ---------
 http://localhost:8080/technician

@@ -46,6 +46,7 @@ function loadMenu(page) {
             loadEquipmentTypes();
             loadBrands();
             loadRefrigerants();
+            loadDashboard();
             loadFormEvent();
 
         })

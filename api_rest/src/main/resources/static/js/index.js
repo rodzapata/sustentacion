@@ -1523,3 +1523,42 @@ function loadServiceOrders() {
     var url = "http://localhost:8080/service-order";
     callApi(url, "GET", null, renderServiceOrders);
 }
+
+// ======= DASHBOARD ========
+function loadDashboard() {
+    var url = "http://localhost:8080/entity-counts";
+    callApi(url, "GET", null, renderDashboard);
+}
+
+function renderDashboard(result) {
+    alert('por aqui ahora ');
+
+    var data = result.data;
+    document.getElementById('clientes_total').textContent = "10";
+    document.getElementById('clientes_porcentaje').textContent = '25%';
+
+    //actualizarDashboard(data) 
+
+    // $("#clientes_total").val(data.customerCount);
+    // $("#actividades_total").val(data.activityCount);
+    // $("#equipos_total").val(equipmentCount);
+
+    // $("#clientes_total").val('10');
+
+
+//     document.getElementById('clientes_total').textContent = val(data.customerCount);
+//     document.getElementById('actividades_total').textContent = val(data.activityCount);
+//     document.getElementById('equipos_total').src = val(equipmentCount);
+// 
+}
+
+function actualizarDashboard(data) {
+    // Formatear el total de clientes con símbolo de dólar y separadores de miles
+    const totalClientes = `$${data.clientes_total.toLocaleString()}`;
+    // Actualizar el porcentaje con el símbolo de porcentaje
+    const porcentajeClientes = `${data.clientes_porcentaje}%`;
+
+    // Actualizar los elementos en el DOM
+    document.getElementById('clientes_total').textContent = totalClientes;
+    document.getElementById('clientes_porcentaje').textContent = porcentajeClientes;
+}

@@ -19,7 +19,7 @@
           const userData = {
               email: email,
               password: password,
-              rolId: 1 // Asigna un rolId fijo para el ejemplo
+              rolId: 2 // Asigna un rolId fijo para los asistentes
           };
   
           try {

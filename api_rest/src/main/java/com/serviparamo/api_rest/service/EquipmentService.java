@@ -84,13 +84,11 @@ public class EquipmentService {
 
     public EquipmentDto create(EquipmentDto dto) {
         //No se puede registrar un numero de serial ya registrado
-
         if(validateBySerialNumber(dto.getSerialNumber())) {
             throw new SerialNumberNotValidException();
         }
 
         //No se puede registrar un Equipo sin un Cliente previamente registrado
-
         if(!customerService.existCustomerById(dto.getCustomerId())) {
             throw new CustomerNotFoundException();
         }
