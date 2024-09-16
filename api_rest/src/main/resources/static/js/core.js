@@ -39,12 +39,17 @@ function callApi(url, method, data, cbSuccess, cbError) {
             try {
                 console.log(error);
                 cbError(xhr.status);
+
             } catch (e) {
                 cbErrorBase(xhr.status);
                 console.log("Error en cbError", e);
             }
         }
     });
+}
+
+function cbErrorBase(error) {
+    alert("El llamado al servidor fallo " + error);
 }
 
 function loadZoneTemplate(zone) {

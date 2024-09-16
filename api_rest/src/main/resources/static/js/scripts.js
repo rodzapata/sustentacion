@@ -97,9 +97,6 @@ function loadContent(page,elemenId) {
         .then(response => response.text())
         .then(data => {
             document.getElementById(elemenId).innerHTML = data;
-            // loadRoles();
-            // loadUsuarios();
-            // loadFormEvent();
         
         })
         .catch(error => console.error('Error al cargar la página:', error));
@@ -110,9 +107,6 @@ function loadContentChange(page,elemenId) {
         .then(response => response.text())
         .then(data => {
             document.getElementById(elemenId).outerHTML = data;
-            // loadRoles();
-            // loadUsuarios();
-            // loadFormEvent();
         
         })
         .catch(error => console.error('Error al cargar la página:', error));
@@ -121,6 +115,7 @@ function loadContentChange(page,elemenId) {
 document.addEventListener("DOMContentLoaded", function() {
     // loadContent('aside_admin.html','aside');
     loadContent('dashboard.html','main-content');
+    loadDashboard();
 
     const usuarioLogueado = localStorage.getItem('usuarioLogueado');
     if (usuarioLogueado) {
@@ -136,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     actualizarPerfil();
-
 });
 
 

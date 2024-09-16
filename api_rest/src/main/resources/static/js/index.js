@@ -10,10 +10,6 @@ $(function () {
     });
 
 
-    // loadRoles();
-    // loadUsuarios();
-    // loadCustomers();
-
     // Convertir los datos de JSON a objeto
     const user = JSON.parse(usuarioLogueado);
 
@@ -409,34 +405,6 @@ $("#frmServiceOrder").on("submit", function (e) {
 
 // ===== FIN ORDEN DE SERVICIO ============
 
-    // ==== formulario Ordenes de servicio ===
-    // ===== agregar linea en el formulario de ordenes de servicio ========
-
-    // document.querySelector('.add-linea').addEventListener('click', function() {
-    //     alert("boton adicionar linea ");
-    //     const detallesContainer = document.getElementById('detalles-container');
-    //     const comboActivity =document.getElementById('cmbActivity');
-    //     const nuevaLinea = document.createElement('div');
-    //     nuevaLinea.className = 'linea-detalle';
-    //     nuevaLinea.innerHTML = `
-    //         <select name="actividad" id="cmbActivity" required>
-    //         </select>
-    //         <input type="text" name="descripcionActividad" placeholder="Descripción de la actividad" required>
-    //         <button type="button" class="remove-linea">Eliminar</button>
-    //         `;
-    //     detallesContainer.appendChild(nuevaLinea);
-
-    
-    //     // Añadir el evento para eliminar la línea
-    //     nuevaLinea.querySelector('.remove-linea').addEventListener('click', function() {
-    //         nuevaLinea.remove();
-    //     });
-    // });
-
-    // // Añadir el evento para eliminar la línea inicial
-    // document.querySelector('.remove-linea').addEventListener('click', function() {
-    //     this.parentElement.remove();
-    // });
 
     // ==== codigo modificado ============
 
@@ -447,6 +415,9 @@ $("#frmServiceOrder").on("submit", function (e) {
         // Clonar el div con la clase "linea-detalle"
         const originalLinea = document.querySelector('.linea-detalle');
         const newLinea = originalLinea.cloneNode(true);
+
+        // Reiniciamos el valor del campo 'descripcionActividad'
+        newLinea.querySelector('input[name="descripcionActividad"]').value = '';
     
         // Añadir el evento al botón "Eliminar" de la nueva línea
         const removeButton = newLinea.querySelector('.remove-linea');
@@ -1531,34 +1502,13 @@ function loadDashboard() {
 }
 
 function renderDashboard(result) {
-    alert('por aqui ahora ');
+    //alert('por aqui ahora ');
 
     var data = result.data;
-    document.getElementById('clientes_total').textContent = "10";
-    document.getElementById('clientes_porcentaje').textContent = '25%';
+    document.getElementById('clientes_total').textContent = data.customerCount;
+   // document.getElementById('clientes_porcentaje').textContent = '25%';
+    document.getElementById('actividades_total').textContent = data.activityCount;
+    document.getElementById('equipos_total').textContent = data.equipmentCount;
 
-    //actualizarDashboard(data) 
-
-    // $("#clientes_total").val(data.customerCount);
-    // $("#actividades_total").val(data.activityCount);
-    // $("#equipos_total").val(equipmentCount);
-
-    // $("#clientes_total").val('10');
-
-
-//     document.getElementById('clientes_total').textContent = val(data.customerCount);
-//     document.getElementById('actividades_total').textContent = val(data.activityCount);
-//     document.getElementById('equipos_total').src = val(equipmentCount);
-// 
 }
 
-function actualizarDashboard(data) {
-    // Formatear el total de clientes con símbolo de dólar y separadores de miles
-    const totalClientes = `$${data.clientes_total.toLocaleString()}`;
-    // Actualizar el porcentaje con el símbolo de porcentaje
-    const porcentajeClientes = `${data.clientes_porcentaje}%`;
-
-    // Actualizar los elementos en el DOM
-    document.getElementById('clientes_total').textContent = totalClientes;
-    document.getElementById('clientes_porcentaje').textContent = porcentajeClientes;
-}
