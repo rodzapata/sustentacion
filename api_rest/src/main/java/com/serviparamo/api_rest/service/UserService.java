@@ -1,5 +1,6 @@
 package com.serviparamo.api_rest.service;
 
+import com.serviparamo.api_rest.conf.Constants;
 import com.serviparamo.api_rest.dto.UserDto;
 import com.serviparamo.api_rest.entity.RolEntity;
 import com.serviparamo.api_rest.entity.UserEntity;
@@ -9,6 +10,7 @@ import com.serviparamo.api_rest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -116,6 +118,22 @@ public class UserService {
 
         for(int i = 0; i < entities.size(); i++) {
             UserEntity entity =  entities.get(i);
+
+            String fullpathAvatar = Constants.PATH_UPLOAD + entity.getAvatar();
+
+            System.out.println(fullpathAvatar);
+
+            File archivo = new File(fullpathAvatar);
+            if (archivo.exists()) {
+                fullpathAvatar = Constants.STATIC_RESOURCES + "servi/files/"+entity.getAvatar();
+                //fullpathAvatar = Constants.STATIC_RESOURCES + "siparqueo-webapp/assets/files/"+entity.getAvatar();
+
+            } else {
+                fullpathAvatar = Constants.STATIC_RESOURCES +  "imagenes/not-found.png";
+            }
+
+            System.out.println("Avatar - " +fullpathAvatar);
+
             UserDto dto = UserDto.builder()
                     .id(entity.getId())
                     .fullName(entity.getFullName())
@@ -127,6 +145,7 @@ public class UserService {
                     .password(entity.getPassword())
                     .rolId(entity.getRol().getId())
                     .rolName(entity.getRol().getTitle())
+                    .fullpathAvatar(fullpathAvatar)
                     .build();
             dtos.add(dto);
         }

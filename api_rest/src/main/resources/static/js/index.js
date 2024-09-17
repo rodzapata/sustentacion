@@ -661,7 +661,41 @@ function loadUsuarios() {
     callApi(url, "GET", null, renderUsers);
 }
 
+function upload() {
+    url = "http://localhost:8080/file/upload";
 
+    var formData = new FormData();
+    formData.append("file", $("#avatar")[0].files[0]);
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        contentType: false,
+        dataType: "json",
+        data: formData, 
+        cache:false,
+        processData: false,
+        headers: {
+            'Authorization':'token123'
+        },
+        success: function (result) {
+            try {
+                $("#fileName").val(result.data);
+                console.log("Success :: Archivo subido con exito " + JSON.stringify(result));
+            } catch (e) {
+                console.log("Error en cbSuccess", e);
+            } 
+        },
+        error: function (xhr, status, error) {
+            try {
+                console.log(error);
+            } catch (e) {
+                cbErrorBase(xhr.status);
+                console.log("Error en cbError", e);
+            }
+        }
+    });
+}
 // ==== ACTIVITY ===========
 function viewActivity(id) {
     var url = "http://localhost:8080/activity/" + id;
