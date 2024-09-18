@@ -11,4 +11,8 @@ public class ServerResponseDataDto {
     private String message;
     private int status;
     public Object data;
+
+    public ServerResponseDataDto() {
+
+    }
 }

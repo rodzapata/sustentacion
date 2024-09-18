@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -22,6 +19,27 @@ public class UserService {
     private UserRepository repository;
     @Autowired
     private RolService rolService;
+
+   // @Autowired
+   // private PasswordEncoder passwordEncoder;
+
+    public UserEntity findByEmail(String email) {
+        return this.repository.findByEmail(email);
+    }
+    public String generateRandomPassword() {
+        // Generar una contraseña aleatoria (8 caracteres)
+        return UUID.randomUUID().toString().substring(0, 8);
+    }
+/*
+    public void updatePassword(UserEntity dto, String newPassword) {
+        dto.setPassword(passwordEncoder.encode(newPassword)); // Encriptar la contraseña
+        //repository.save(user);
+
+        UserEntity entity = new UserEntity();
+        entity.setPassword(dto.getPassword());
+        repository.save(entity);
+    }
+*/
     public boolean validateByEmail(String email) {
         UserEntity entity = this.repository.findByEmail(email);
         if(Objects.isNull(entity)) {
@@ -44,6 +62,7 @@ public class UserService {
     }
     */
 
+
     public UserDto validarCredenciales(String username, String password) {
         if(!validateByEmail(username)) {
             throw new ResourceNotFoundException("Correo de usuario no existe");
@@ -65,14 +84,6 @@ public class UserService {
                 .rolId(entity.getRol().getId())
                 .rolName(entity.getRol().getTitle())
                 .build();
-/*
-        if(Objects.isNull(entity)) {
-            return null;
-        }
-        if (!password.equals(entity.getPassword())) {
-            return null;
-        }
-     */
 
         return dto;
     }
@@ -142,7 +153,7 @@ public class UserService {
                     .email(entity.getEmail())
                     .phone(entity.getPhone())
                     .avatar(entity.getAvatar())
-                    .password(entity.getPassword())
+                    //.password(entity.getPassword())
                     .rolId(entity.getRol().getId())
                     .rolName(entity.getRol().getTitle())
                     .fullpathAvatar(fullpathAvatar)
@@ -204,7 +215,7 @@ public class UserService {
         entity.setEmail(newData.getEmail());
         entity.setPhone(newData.getPhone());
         entity.setAvatar(newData.getAvatar());
-        entity.setPassword(newData.getPassword());
+       // entity.setPassword(newData.getPassword());
 
         RolEntity rol = new RolEntity();
         rol.setId(newData.getRolId());

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bienvenidos</h1>
+    <form id="loginForm">
+        <label for="" id="loginMessage" class="center"></label>
+
+        <input type="email" id="email" name="email" placeholder="Correo Electrónico" required>
+        <br><br>
+        <input type="password" id="password" name="password" placeholder="password" required>
+        <br><br>
+        <button type="submit">Iniciar Sesión</button>
+        <button id="btnGuardar" type="button">Probar</button>  
+        <button id="btnTraer" type="button">Traer</button>  
+
+    </form>
+    <div class="profile">
+        <div class="info">
+            <p>Hey, <b id="userName">Usu</b></p>
+            <small class="text-muted" id="userRole">Rol</small>
+        </div>
+        <div class="profile-photo">
+            <img id="userImage" src="" alt="" srcset="">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a class="small" href="registrar.html">Crear Cuenta</a>
+    </div>
+
+    <script src="js/login3.js"></script>
+</body>
+    
+</html>

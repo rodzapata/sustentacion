@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardar Usuario</title>
+    <style>
+        .mensaje-exito {
+            display: none;
+            color: green;
+            border: 1px solid green;
+            padding: 10px;
+            margin-top: 20px;
+            width: 200px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function guardarUsuario() {
+            // Lógica para guardar usuario
+
+            // Mostrar mensaje de éxito
+            document.getElementById("mensaje-exito").style.display = "block";
+        }
+
+        function pruebaclick(){
+           alert("Datos guardados");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="guardarUsuario()">Guardar Usuario</button>
+    <div id="mensaje-exito" class="mensaje-exito">
+        Usuario guardado correctamente
+    </div>
+
+    <button onclick="pruebaclick()">Guardar</button>
+</body>
+</html>

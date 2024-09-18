@@ -1,15 +1,23 @@
 package com.serviparamo.api_rest.controller;
 
 import com.serviparamo.api_rest.dto.LoginDto;
+import com.serviparamo.api_rest.dto.PasswordResetRequestDto;
 import com.serviparamo.api_rest.dto.ServerResponseDataDto;
 import com.serviparamo.api_rest.dto.UserDto;
+import com.serviparamo.api_rest.entity.UserEntity;
+import com.serviparamo.api_rest.service.EmailService;
 import com.serviparamo.api_rest.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
@@ -18,22 +26,50 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private EmailService emailService;
 
+    /*
+    @PostMapping("/reset")
+    public ResponseEntity<String> resetPassword(@RequestBody PasswordResetRequestDto request) {
+        try {
+            // Buscar el usuario por correo electrónico
+            UserEntity user = service.findByEmail(request.getEmail());
+            if (user == null) {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+            }
+
+            // Generar nueva contraseña aleatoria
+            String newPassword = service.generateRandomPassword();
+
+            // Actualizar la contraseña del usuario
+            service.updatePassword(user, newPassword);
+
+            // Enviar el correo con la nueva contraseña
+            emailService.sendPasswordResetEmail(user.getEmail(), newPassword);
+
+            return new ResponseEntity<>("Correo enviado con la nueva contraseña", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error al restablecer la contraseña", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+     */
     @PostMapping("/validar-credenciales")
     public ServerResponseDataDto validarCredenciales(@RequestBody UserDto userDto) {
 
         UserDto dto = this.service.validarCredenciales(userDto.getEmail(), userDto.getPassword());
-
 
         return ServerResponseDataDto.builder()
                 .data(dto)
                 .status(HttpStatus.OK.value())
                 .message("Registro encontrado")
                 .build();
-
-
     }
-/*
+
+
+
+    /*
     @PostMapping("/validar-credenciales")
     public boolean validarCredenciales(@RequestBody @Valid LoginDto dto) {
         return service.validarCredenciales(dto.getEmail(),dto.getPassword());
