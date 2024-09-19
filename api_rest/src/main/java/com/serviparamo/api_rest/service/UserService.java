@@ -20,8 +20,8 @@ public class UserService {
     @Autowired
     private RolService rolService;
 
-   // @Autowired
-   // private PasswordEncoder passwordEncoder;
+    //@Autowired
+    //private PasswordEncoder passwordEncoder;
 
     public UserEntity findByEmail(String email) {
         return this.repository.findByEmail(email);

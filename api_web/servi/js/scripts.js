@@ -31,6 +31,7 @@ function loadMenu(page) {
             loadRoles();
             loadUsuarios();
             loadCustomers();
+            loadCustomersExport();
             loadEquipments();
             cmbCustomers();
             cmbTipoEquipo();

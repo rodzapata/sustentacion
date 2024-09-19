@@ -1,3 +1,8 @@
+-----EMAIL ENVIADO ----
+http://localhost:8080/email/send-email
+servios355@gamail.com
+
+
 ------ DASBOARD ---------
 http://localhost:8080/entity-counts
 {

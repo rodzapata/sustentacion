@@ -1,0 +1,105 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./css/eje_datatable.css"> -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+</head>
+
+
+<div class="main-customer" id="main-customer">
+    
+    <table id="example" class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Fecha nacimiento</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+        <!-- <tbody id="bodyListCustomersExport">
+
+        </tbody> -->
+    </table>
+
+</div>
+<script src="js/scripts.js"></script>
+<script src="js/core.js"></script>
+<script src="js/index.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+<script>
+
+    new DataTable('#example', {
+        layout: {
+            topStart: {
+                buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            }
+        }
+    });
+    //loadCustomersExport();
+
+         // URL de la API
+         const url = 'http://localhost:8080/customer';
+
+// Función para consultar la API y llenar la tabla
+async function fetchAndFillTable() {
+    try {
+        // Realizar la petición GET a la URL
+        const response = await fetch(url);
+
+        // Verificar si la respuesta fue exitosa
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+
+        // Convertir la respuesta a formato JSON
+        const jsonData =  await response.json();
+
+        // Seleccionar el tbody de la tabla
+        const tbody = document.querySelector('#example tbody');
+
+        // Recorrer los datos y agregarlos a la tabla
+        jsonData.data.forEach(item => {
+            // Crear una nueva fila
+            const row = document.createElement('tr');
+            
+            // Crear las celdas con los datos
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.fullName}</td>
+                <td>${new Date(item.bornDate).toLocaleDateString()}</td>
+                <td>${item.email}</td>
+                <td>${item.phone}</td>
+                <td>${item.address}</td>
+                <td>${item.city}</td>
+            `;
+            
+            // Agregar la fila al tbody
+            tbody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud Fetch:', error);
+    }
+}
+
+// Llamar a la función cuando se cargue la página
+document.addEventListener('DOMContentLoaded', fetchAndFillTable);
+</script>

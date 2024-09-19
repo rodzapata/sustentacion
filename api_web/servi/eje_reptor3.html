@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Clientes - PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Botón para generar el PDF -->
+    <button id="generatePDF">Generar PDF de Clientes</button>
+
+    <!-- Listado de clientes (Opcional: solo para mostrar en la página) -->
+    <h2>Listado de Clientes</h2>
+    <ul id="customerList">
+        <li>1. Evelin Palacio - Barranquilla</li>
+        <li>2. Tecnoglas - Barranquilla</li>
+        <li>3. Gruas Telescopica de Colombia - Barranquilla</li>
+    </ul>
+
+    <!-- Script para generar el PDF con jsPDF -->
+    <script>
+        // Listado de clientes como un ejemplo
+        const customers = [
+            { id: 1, fullName: "Evelin Palacio", city: "Barranquilla", email: "evelin2005@gmail.com" },
+            { id: 2, fullName: "Tecnoglas", city: "Barranquilla", email: "samuel@tecno.com" },
+            { id: 3, fullName: "Gruas Telescopica de Colombia", city: "Barranquilla", email: "gruas@tecno.com" }
+        ];
+
+        // Función para generar el PDF
+        function generatePDF() {
+            // Acceder a jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Título del documento
+            doc.setFontSize(18);
+            doc.text("Listado de Clientes", 10, 10);
+
+            // Añadir cada cliente al PDF
+            doc.setFontSize(12);
+            let yPosition = 20; // Posición Y inicial
+
+            customers.forEach((customer, index) => {
+                doc.text(`${index + 1}. ${customer.fullName} - ${customer.city} - ${customer.email}`, 10, yPosition);
+                yPosition += 10; // Aumentar la posición para la próxima línea
+            });
+
+            // Guardar el archivo PDF
+            doc.save("listado_clientes.pdf");
+        }
+
+        // Asignar el evento click al botón
+        document.getElementById("generatePDF").addEventListener("click", generatePDF);
+    </script>
+
+</body>
+</html>

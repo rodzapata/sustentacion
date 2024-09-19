@@ -14,7 +14,7 @@ spring:
   mail:
     host: smtp.gmail.com           # Servidor SMTP
     port: 587                      # Puerto para TLS
-    username: servios355@gamail.com   # Tu correo electrónico
+    username: rzapata@serviparamo.co   # Tu correo electrónico
     password: Rodney$1975.         # La contraseña de tu correo
     properties:
       mail:

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Correo</title>
+</head>
+<body>
+
+    <h1>Enviar Correo</h1>
+    <form id="emailForm">
+        <label for="to">Para:</label><br>
+        <input type="email" id="to" name="to" required><br><br>
+
+        <label for="subject">Asunto:</label><br>
+        <input type="text" id="subject" name="subject" required><br><br>
+
+        <label for="text">Mensaje:</label><br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Enviar Correo</button>
+    </form>
+
+    <p id="responseMessage"></p>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const to = document.getElementById('to').value;
+            const subject = document.getElementById('subject').value;
+            const text = document.getElementById('text').value;
+
+            const responseMessage = document.getElementById('responseMessage');
+            responseMessage.textContent = "Enviando...";
+
+            try {
+                const response = await fetch('http://localhost:8080/email/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        to: to,
+                        subject: subject,
+                        text: text
+                    })
+                });
+
+                if (response.ok) {
+                    responseMessage.textContent = "Correo enviado con éxito.";
+                } else {
+                    responseMessage.textContent = "Error al enviar el correo.";
+                }
+            } catch (error) {
+                responseMessage.textContent = "Ocurrió un error: " + error.message;
+            }
+        });
+    </script>
+
+</body>
+</html>

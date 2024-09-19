@@ -662,6 +662,7 @@ function loadUsuarios() {
     callApi(url, "GET", null, renderUsers);
 }
 
+
 function upload() {
     alert("por aqui Upload");
     url = "http://localhost:8080/file/upload";
@@ -1098,9 +1099,32 @@ function renderCustomers(result) {
     });
 }
 
+function renderCustomersExport(result) {
+    let html = "";
+    for (var i = 0; i < result.data.length; i++) {
+        var customer = result.data[i];
+        html += "<tr>";
+        html += "<th>" + (i + 1) + "</th>"
+        html += "<td>" + customer.id + "</td>"
+        html += "<td>" + customer.fullName + "</td>"
+        html += "<td>" + customer.bornDate + "</td>"
+        html += "<td>" + customer.email + "</td>"
+        html += "<td>" + customer.phone + "</td>"
+        html += "<td>" + customer.address + "</td>"
+        html += "</tr>"
+    }
+    $("#bodyListCustomersExport").html(html);
+    
+}
+
 function loadCustomers() {
     var url = "http://localhost:8080/customer";
     callApi(url, "GET", null, renderCustomers);
+}
+
+function loadCustomersExport() {
+    var url = "http://localhost:8080/customer";
+    callApi(url, "GET", null, renderCustomersExport);
 }
 
 

@@ -6,6 +6,9 @@
     <title>ServiOT</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.1.2/css/buttons.dataTables.css">
+
 </head>
 <body>
     <div class="container">
@@ -105,6 +108,12 @@
                             <h3>Orders</h3>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" onclick="loadMenu('reportes.html')">
+                            <span class="material-symbols-outlined">report</span>
+                            <h3>report</h3>
+                        </a>
+                    </li>
                     <!-- <li>
                         <a href="#" onclick="loadMenu('form2.html')">
                             <span class="material-symbols-outlined">monitoring</span>
@@ -115,12 +124,6 @@
                         <a href="#" onclick="loadMenu('page6.html')">
                             <span class="material-symbols-outlined">mail</span>
                             <h3>Messages</h3>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="loadMenu('page8.html')">
-                            <span class="material-symbols-outlined">report</span>
-                            <h3>report</h3>
                         </a>
                     </li>
                     <li>
@@ -223,6 +226,25 @@
     <script src="js/scripts.js"></script>
     <script src="js/core.js"></script>
     <script src="js/index.js"></script>
+
     
+    <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+    <script>
+        new DataTable('#example', {
+            layout: {
+                topStart: {
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                }
+            }
+        });
+    
+    </script>    
 </body>
 </html>

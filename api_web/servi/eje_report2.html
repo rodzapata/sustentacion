@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llenar Tabla desde JSON y Usar DataTables</title>
+    <!-- Cargar CSS de DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+</head>
+<body>
+
+    <!-- Tabla HTML -->
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>fullName</th>
+                <th>bornDate</th>
+                <th>Correo</th>
+                <th>telefono</th>
+                <th>address</th>
+                <th>city</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se llenarán las filas de la tabla dinámicamente -->
+        </tbody>
+    </table>
+
+    <!-- Cargar jQuery y DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <!-- Script para consultar la API y llenar la tabla -->
+    <script>
+        // URL de la API
+        const url = 'http://localhost:8080/customer';
+
+        // Función para consultar la API y llenar la tabla
+        async function fetchAndFillTable() {
+            try {
+                // Realizar la petición GET a la URL
+                const response = await fetch(url);
+
+                // Verificar si la respuesta fue exitosa
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos');
+                }
+
+                // Convertir la respuesta a formato JSON
+                const jsonData = await response.json();
+
+                // Seleccionar el tbody de la tabla
+                const tbody = document.querySelector('#example tbody');
+
+                // Recorrer los datos y agregarlos a la tabla
+                jsonData.data.forEach(item => {
+                    // Crear una nueva fila
+                    const row = document.createElement('tr');
+                    
+                    // Crear las celdas con los datos
+                    row.innerHTML = `
+                        <td>${item.id}</td>
+                        <td>${item.fullName}</td>
+                        <td>${new Date(item.bornDate).toLocaleDateString()}</td>
+                        <td>${item.email}</td>
+                        <td>${item.phone}</td>
+                        <td>${item.address}</td>
+                        <td>${item.city}</td>
+                    `;
+                    
+                    // Agregar la fila al tbody
+                    tbody.appendChild(row);
+                });
+
+                // Inicializar DataTables después de que la tabla se haya llenado
+                $('#example').DataTable();
+
+            } catch (error) {
+                console.error('Hubo un problema con la solicitud Fetch:', error);
+            }
+        }
+
+        // Llamar a la función cuando se cargue la página
+        document.addEventListener('DOMContentLoaded', fetchAndFillTable);
+    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script> 
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>  -->
+    <script>
+    //     new DataTable('#example', {
+    // layout: {
+    //     topStart: {
+    //         buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    //     }
+    // }
+    // });
+        
+    </script>
+
+</body>
+</html>

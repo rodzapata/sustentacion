@@ -96,3 +96,44 @@ function actualizarPerfil() {
 
     }
 }
+
+function fetchAndFillTable() {
+    try {
+        // Realizar la petición GET a la URL
+        const response = fetch(url);
+
+        // Verificar si la respuesta fue exitosa
+        if (!response.ok) {
+            throw new Error('Error al obtener los datos');
+        }
+
+        // Convertir la respuesta a formato JSON
+        const jsonData =  response.json();
+
+        // Seleccionar el tbody de la tabla
+        const tbody = document.querySelector('#example tbody');
+
+        // Recorrer los datos y agregarlos a la tabla
+        jsonData.data.forEach(item => {
+            // Crear una nueva fila
+            const row = document.createElement('tr');
+            
+            // Crear las celdas con los datos
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.fullName}</td>
+                <td>${new Date(item.bornDate).toLocaleDateString()}</td>
+                <td>${item.email}</td>
+                <td>${item.phone}</td>
+                <td>${item.address}</td>
+                <td>${item.city}</td>
+            `;
+            
+            // Agregar la fila al tbody
+            tbody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error('Hubo un problema con la solicitud Fetch:', error);
+    }
+}
