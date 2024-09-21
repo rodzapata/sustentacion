@@ -33,7 +33,7 @@ public class UserDto {
    // @NotBlank
     private String avatar;
 
-    @NotNull
+    //@NotNull
     private Long rolId;
 
     private String rolName;
@@ -41,4 +41,8 @@ public class UserDto {
     //@NotBlank
     private String password;
     private String fullpathAvatar;
+
+    public UserDto(){
+
+    }
 }

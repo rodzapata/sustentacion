@@ -1,6 +1,28 @@
+---CAMBIAR PASSWORD ----
+http://localhost:8080/user/actualizar-password
+
+ {
+      "email": "rodneyzapatapalacio@gmail.com",
+      "password": "1025"
+ }
+
+
+
 -----EMAIL ENVIADO ----
 http://localhost:8080/email/send-email
+
+ {
+    "to": "rodneyzapatapalacio@gmail.com",
+    "subject": "prueba",
+    "text": "envio de correo"
+ }
 servios355@gamail.com
+
+
+    username: servios355@gamail.com   # Tu correo electrónico
+    password: Rodney$1975.         # La contraseña de tu correo
+
+email: rzapata@serviparamo.co
 
 
 ------ DASBOARD ---------

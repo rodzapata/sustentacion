@@ -92,10 +92,35 @@ function actualizarPerfil() {
         // Actualizar el rol
         document.getElementById('userRole').textContent = rolName;
         // Actualizar la imagen de perfil
-        document.getElementById('userImage').src = avatar;
-
+        document.getElementById('userImage').src = "http://localhost/servi/files/"+avatar;
+        
+        //html += "<img src='" + user.fullpathAvatar + "' class='avatar' width='50px' height='50px'>"
     }
 }
+
+function generatePdfCustomer() {
+    alert("por aqui2");
+    var doc = new jsPDF({
+    	orientation: "p",
+	    format: 'letter',
+    });
+
+    var specialElementHandlers = {
+      '#buttonReport': function(element, renderer){
+        return true;
+      },
+      '.controls': function(element, renderer){
+        return true;
+      }
+    };
+
+    doc?.fromHTML(document?.querySelector(".table"), 10, 20, {
+      'width': 1024,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc?.save('Generated.pdf');
+  }
 
 function fetchAndFillTable() {
     try {

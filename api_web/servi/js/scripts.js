@@ -48,12 +48,52 @@ function loadMenu(page) {
             loadBrands();
             loadRefrigerants();
             loadDashboard();
+            //loadCustomersExport();
+            botonespdf();
             loadFormEvent();
 
         })
         .catch(error => console.error('Error al cargar la página:', error));
         
 }
+async function botonespdf(){
+    const $table = $("#example").DataTable({
+        caption: "Titulo de la table",
+        paging: false,
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: "print",
+                        title: "Titulo del reporte"
+                    },
+                    {
+                        extend: "pdf"
+                    },
+                    {
+                        extend: "excel"
+                    }
+                ]
+            }
+        }
+    })
+
+    await fetch("http://localhost:8080/customer")
+    .then((data) => data.json())
+    .then(({ data }) => {
+        for (var i = 0; i < data.length; i++) {
+            var customer = data[i];
+            $table.row.add([
+                customer.fullName,
+                customer.address,
+                customer.phone,
+                customer.email,
+                customer.bornDate
+            ]).draw().node()
+        }
+    })
+}
+
 function activeOpcion(){
     let enlaces = document.querySelectorAll('a');
     enlaces.forEach(function (enlace) {

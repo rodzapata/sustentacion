@@ -8,8 +8,7 @@ body {
     background-size: cover;
     /* background-size:contain; */
 }
-
-#loginForm {
+.email-container {
     background-color: rgba(255, 255, 255, 0.8); 
     padding: 20px;
     border-radius: 10px;
@@ -36,7 +35,6 @@ input[type="password"] {
 }
 
 
-
 button[type="submit"] {
     width: 100%;
     padding: 10px;
@@ -45,11 +43,15 @@ button[type="submit"] {
     color: white;
     border: none;
     border-radius: 25px;
-    cursor: pointer;
+    cursor: default;
     font-size: 16px;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:not([disabled]) {
+    cursor: pointer;
+}
+
+button[type="submit"]:not([disabled]):hover {
     background-color: #45a049;
     background-color: #2980b9;
 

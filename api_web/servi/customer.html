@@ -1,3 +1,36 @@
+<script>
+    console.clear();
+    console.log("test");
+    function pruebaPdf(){
+        alert("probando ...");
+    }
+        /*document.querySelector('.pdfCustomer').addEventListener('click', function() {
+            alert('prueba de PDF');
+            var doc = new jsPDF({
+                orientation: "p",
+                format: 'letter',
+            });
+        
+            var specialElementHandlers = {
+              '#buttonReport': function(element, renderer){
+                return true;
+              },
+              '.controls': function(element, renderer){
+                return true;
+              }
+            };
+        
+            doc?.fromHTML(document?.querySelector(".table"), 10, 20, {
+              'width': 1024,
+              'elementHandlers': specialElementHandlers
+            });
+        
+            doc?.save('listado_clientes.pdf');
+        
+        });
+        */
+
+</script>
 <div class="main-customer" id="main-customer">
     <form id="frmCustomer">
                 <input type="hidden" id="customerId" />
@@ -41,9 +74,11 @@
                     </div>
                 </div>
             </form>
+            <!-- <button type="button" id="buttonReport" onclick="generateReport()" class="pdfCustomer" >Generar PDF</button> -->
             <br>
-    
-            <table class="table">
+            
+            <div class="table">
+            <table>
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -60,4 +95,5 @@
                     
                 </tbody>
             </table>
+        </div>
 </div>

@@ -1100,20 +1100,18 @@ function renderCustomers(result) {
 }
 
 function renderCustomersExport(result) {
-    let html = "";
+    //let html = "";
     for (var i = 0; i < result.data.length; i++) {
         var customer = result.data[i];
-        html += "<tr>";
-        html += "<th>" + (i + 1) + "</th>"
-        html += "<td>" + customer.id + "</td>"
-        html += "<td>" + customer.fullName + "</td>"
-        html += "<td>" + customer.bornDate + "</td>"
-        html += "<td>" + customer.email + "</td>"
-        html += "<td>" + customer.phone + "</td>"
-        html += "<td>" + customer.address + "</td>"
-        html += "</tr>"
+        $("#example").row.add([
+            customer.fullName,
+            customer.address,
+            customer.phone,
+            customer.email,
+            customer.bornDate
+        ])
     }
-    $("#bodyListCustomersExport").html(html);
+    //$("#bodyListCustomersExport").html(html);
     
 }
 

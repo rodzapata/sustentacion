@@ -30,7 +30,22 @@ public class UserService {
         // Generar una contraseña aleatoria (8 caracteres)
         return UUID.randomUUID().toString().substring(0, 8);
     }
-/*
+
+    public boolean actualizarPassword(UserDto userDto) {
+        Optional<UserEntity> userOpt = Optional.ofNullable(repository.findByEmail(userDto.getEmail()));
+
+        if (userOpt.isPresent()) {
+            UserEntity user = userOpt.get();
+            user.setPassword(userDto.getPassword());  // Aquí puedes usar alguna función de encriptación si es necesario
+            repository.save(user); // Guarda los cambios en la base de datos
+            return true;
+        } else {
+            return false; // Usuario no encontrado
+        }
+    }
+
+
+    /*
     public void updatePassword(UserEntity dto, String newPassword) {
         dto.setPassword(passwordEncoder.encode(newPassword)); // Encriptar la contraseña
         //repository.save(user);

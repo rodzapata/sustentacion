@@ -29,6 +29,16 @@ public class UserController {
     @Autowired
     private EmailService emailService;
 
+    @PutMapping("/actualizar-password")
+    public String actualizarPassword(@RequestBody UserDto userDto) {
+        boolean actualizado = service.actualizarPassword(userDto);
+
+        if (actualizado) {
+            return "Contraseña actualizada correctamente.";
+        } else {
+            return "Usuario no encontrado.";
+        }
+    }
     /*
     @PostMapping("/reset")
     public ResponseEntity<String> resetPassword(@RequestBody PasswordResetRequestDto request) {

@@ -67,27 +67,6 @@
 </body>
 
 <script>
-function generateReport() {
-    var doc = new jsPDF({
-    	orientation: "p",
-	    format: 'letter',
-    });
 
-    var specialElementHandlers = {
-      '#buttonReport': function(element, renderer){
-        return true;
-      },
-      '.controls': function(element, renderer){
-        return true;
-      }
-    };
-
-    doc?.fromHTML(document?.querySelector(".tableReport"), 10, 20, {
-      'width': 1024,
-      'elementHandlers': specialElementHandlers
-    });
-
-    doc?.save('Generated.pdf');
-  }
 </script>
 
